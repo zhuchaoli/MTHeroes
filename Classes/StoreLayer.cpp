@@ -124,6 +124,7 @@ void StoreLayer::initMenu()
 //ÓÑÇé³é½± »¨ÉÙÁ¿½ð±Ò ³éÒ»ÕÅÍÌÊÉ¿¨ÅÆ
 void StoreLayer::menu_raffle_friend_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//ÅÐ¶Ï½ð±ÒÊÇ·ñ³ä×ã
 	if(Hero::sharedHero()->getMoney() < 50)
 	{
@@ -143,6 +144,8 @@ void StoreLayer::menu_raffle_friend_callback(CCObject*)
 //·ûÊ¯³é½± »¨²¿·Ö·ûÊ¯ Á¬³éÊ®´ÎÍÌÊÉ¿¨ÅÆ
 void StoreLayer::menu_raffle_diamon_callback(CCObject*)
 {
+	
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//ÅÐ¶Ï·ûÊ¯ÊÇ·ñ³ä×ã
 	if(Hero::sharedHero()->getDiamond() < 250)
 	{
@@ -166,6 +169,7 @@ void StoreLayer::menu_raffle_diamon_callback(CCObject*)
 
 void StoreLayer::menu_buystrengthbymoney_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//ÅÐ¶Ï½ð±ÒÊÇ·ñ³ä×ã
 	if(Hero::sharedHero()->getMoney() < 200)
 	{
@@ -186,6 +190,7 @@ void StoreLayer::menu_buystrengthbymoney_callback(CCObject*)
 
 void StoreLayer::menu_buystrengthbydiamon_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//ÅÐ¶Ï·ûÊ¯ÊÇ·ñ³ä×ã
 	if(Hero::sharedHero()->getDiamond() < 50)
 	{

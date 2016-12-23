@@ -25,6 +25,7 @@ bool TastListLayer::init()
 
 void TastListLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	int index = cell->getIdx();
 	DialogStringLayer* dlg;
 	if(isTouched[index])return;

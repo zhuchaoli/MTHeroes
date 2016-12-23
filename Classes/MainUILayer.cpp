@@ -314,6 +314,7 @@ void MainUILayer::configureMenuUI()
 //选择英雄回调函数
 void MainUILayer::menu_selectcardcallback(CCObject* pSender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	for(int i = 0; i < 5; ++i)role_frame[i]->setVisible(false);
 	CCMenuItemSprite* item = (CCMenuItemSprite*)pSender;
 	CCSprite* frame = (CCSprite*)item->getChildByTag(111);
@@ -322,6 +323,7 @@ void MainUILayer::menu_selectcardcallback(CCObject* pSender)
 
 void MainUILayer::menu_mailcallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//取消所有定时 并移除team和menu
 	this->unscheduleAllSelectors();
 	this->removeChild(team);
@@ -340,6 +342,7 @@ void MainUILayer::showMailUI()
 //点击英雄按钮回调的函数
 void MainUILayer::menu_cardcallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//取消所有定时 并移除team和menu
 	this->unscheduleAllSelectors();
 	this->removeChild(team);
@@ -367,6 +370,7 @@ void MainUILayer::menu_cardlevelupcallback(CCObject*)
 			break;
 		}
 	}
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//取消所有定时 并移除team和menu
 	this->unscheduleAllSelectors();
 	this->removeChild(team);
@@ -385,6 +389,7 @@ void MainUILayer::showCardLevelupUI()
 
 void MainUILayer::menu_tastcallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//取消所有定时 并移除team和menu
 	this->unscheduleAllSelectors();
 	this->removeChild(team);
@@ -403,6 +408,7 @@ void MainUILayer::showTastUI()
 
 void MainUILayer::menu_archivescallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	Archives::sharedArchives()->setArchives();
 	DialogStringLayer* layer = DialogStringLayer::create(AppStringFile::sharedAppStringFile()->getStringForKey("text_archives_tips"));
 	this->addChild(layer);

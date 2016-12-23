@@ -10,7 +10,7 @@ public:
 	bool init();
 private:
 	void LoadPicResoureToCache();//加载图片资源到缓存
-	void LoadHeroProperty();//加载英雄属性
+	void LoadBackgroundMisic();//预加载音乐
 private:
 	CopyrightLayer * copyrightLayer;
 };

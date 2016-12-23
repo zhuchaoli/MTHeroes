@@ -106,4 +106,5 @@ private:
 	vector<int> monster_alive;
 	bool gongjifang;//当前攻击方   true->英雄  false->怪物
 	int bkmovecount;//背景是第几次移动
+	int effectId;//音效ID
 };

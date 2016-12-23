@@ -1,15 +1,13 @@
 #include "LoginLayer.h"
 #include "StoryScene.h"
 #include "AppMacros.h"
-#include "SimpleAudioEngine.h"
-using namespace CocosDenshion;
 
 bool LoginLayer::init()
 {
 	if(!CCLayer::init())return false;
-	//¼ÓÔØµÇÂ¼³¡¾°µÄ±³¾°ÒôÀÖ
-	//SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/Music_aihao.mp3");
-	//SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/Music_aihao.mp3");
+	//µÇÂ¼³¡¾°µÄ±³¾°ÒôÀÖ
+	SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.5f);
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/startgame.mp3",true);
 	initUI();
 	return true;
 }

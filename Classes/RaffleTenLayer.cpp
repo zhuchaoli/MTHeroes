@@ -16,6 +16,8 @@ CCScene* RaffleTenLayer::scene(int* cards)
 bool RaffleTenLayer::init()
 {
 	if(!CCLayer::init())return false;
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_choujiang.mp3");
 	m_cardth = 0;
 	m_posx[0] = m_posx[9] = 100;
 	m_posx[1] = m_posx[8] = 210;
@@ -52,6 +54,8 @@ void RaffleTenLayer::initBK()
 
 void RaffleTenLayer::menu_comfirm_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/main.mp3",true);
 	CCDirector::sharedDirector()->popScene();
 }
 
@@ -150,7 +154,7 @@ void RaffleTenLayer::remove_xiangzhiandguang()
 
 void RaffleTenLayer::show_card()
 {
-	this->schedule(schedule_selector(RaffleTenLayer::show_box_card),0.2f);
+	this->schedule(schedule_selector(RaffleTenLayer::show_box_card),0.3f);
 }
 //œ‘ æπÿ±’≤Àµ•
 void RaffleTenLayer::show_menu()
@@ -175,6 +179,7 @@ void RaffleTenLayer::show_box_card(float)
 {
 	if(m_cardth < 10)
 	{
+		SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill05.mp3");
 		CCSprite* box_card = CCSprite::createWithSpriteFrameName("raffle_box_card.png");
 		box_card->setScale(0.3f);
 		box_card->setTag(m_cardth);
@@ -187,7 +192,7 @@ void RaffleTenLayer::show_box_card(float)
 	else
 	{
 		this->unschedule(schedule_selector(RaffleTenLayer::show_box_card));
-		this->schedule(schedule_selector(RaffleTenLayer::show_box_card_front),0.2f);
+		this->schedule(schedule_selector(RaffleTenLayer::show_box_card_front),0.3f);
 		m_cardth = 0;
 	}
 }
@@ -196,6 +201,7 @@ void RaffleTenLayer::show_box_card_front(float)
 {
 	if(m_cardth < 10)
 	{
+		SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill08.mp3");
 		this->getChildByTag(m_cardth)->runAction(CCSequence::create(CCFadeOut::create(0.3f),
 			CCCallFuncN::create(this,callfuncN_selector(RaffleTenLayer::remove_box_card)),NULL));
 		CCNode* card = CCNode::create();

@@ -7,4 +7,7 @@
 //»ñÈ¡ÆÁÄ»³ß´ç
 #define winSize  CCDirector::sharedDirector()->getWinSize()
 
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
+
 #endif /* __APPMACROS_H__ */

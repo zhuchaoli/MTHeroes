@@ -16,6 +16,8 @@ CCScene* RaffleOneLayer::scene(int index)
 bool RaffleOneLayer::init()
 {
 	if(!CCLayer::init())return false;
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_choujiang.mp3");
 	initBK();
 	return true;
 }
@@ -44,6 +46,8 @@ void RaffleOneLayer::initBK()
 
 void RaffleOneLayer::menu_comfirm_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/main.mp3",true);
 	CCDirector::sharedDirector()->popScene();
 }
 

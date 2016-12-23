@@ -20,6 +20,7 @@ bool NorInstanceListLayer::init()
 
 void NorInstanceListLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//ÅÐ¶ÏÌåÁ¦ÊÇ·ñ¹»
 	if(Hero::sharedHero()->getStrength() < 5)
 	{

@@ -58,6 +58,7 @@ void InstanceLayer::initList()
 
 void InstanceLayer::return_instance(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	this->removeChild(title_custom_lineup);
 	title_custom_lineup = NULL;
 	this->removeChild(menu_left_return);
@@ -74,6 +75,7 @@ void InstanceLayer::return_instance(CCObject*)
 
 void InstanceLayer::return_lineup(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	this->removeChild(norinstancelayer);
 	norinstancelayer = NULL;
 	this->removeChild(title_custom_instance);
@@ -171,9 +173,9 @@ void InstanceLayer::return_lineup(CCObject*)
 
 void InstanceLayer::menu_start_battle(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//使用pushScene
 	CCDirector::sharedDirector()->pushScene(BattleLayer::scene());
-	
 }
 //返回到副本界面
 void InstanceLayer::restoreToInstanceUI()

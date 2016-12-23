@@ -112,6 +112,7 @@ void DialogStringLayer::pushMenu(CCMenuItem * pMenuItem)
 
 void DialogStringLayer::menu_confirmcallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	this->removeFromParentAndCleanup(true);
 }
 

@@ -58,6 +58,7 @@ void ArenaLayer::initList()
 
 void ArenaLayer::return_arena(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	this->removeChild(title_custom_lineup);
 	title_custom_lineup = NULL;
 	this->removeChild(menu_left_return);
@@ -171,9 +172,9 @@ void ArenaLayer::return_lineup(CCObject*)
 
 void ArenaLayer::menu_start_battle(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	//使用pushScene
 	CCDirector::sharedDirector()->pushScene(BattleLayer::scene());
-	
 }
 //返回到副本界面
 void ArenaLayer::restoreToArenaUI()

@@ -3,14 +3,14 @@
 #include "AppMacros.h"
 #include "Hero.h"
 #include "ValueConvert.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 bool MainTopUITouchLayer::init()
 {
 	if(!CCLayer::init())return false;
 	setContentSize(CCSizeMake(640,240));
 	setTouchEnabled(true);//开启触摸
-	//InitSysInfo();
-	//sysInfo->setVisible(false);
 	return true;
 }
 
@@ -26,7 +26,7 @@ bool MainTopUITouchLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	CCPoint pt = pTouch->getLocationInView();//获取UI坐标系的坐标 原点在左上角
 	if(pt.y <= 130 && pt.y >= 0)
 	{
-		//sysInfo->setVisible(true);
+		SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 		InitSysInfo();
 		return true;
 	}
@@ -35,7 +35,6 @@ bool MainTopUITouchLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void MainTopUITouchLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-	//sysInfo->setVisible(false);
 	this->unscheduleAllSelectors();
 	this->removeChild(sysInfo);
 }

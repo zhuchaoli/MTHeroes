@@ -16,6 +16,8 @@ CCScene* BattleLayer::scene()
 bool BattleLayer::init()
 {
 	if(!CCLayer::init())return false;
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/battle_backgroundmusic1.mp3",true);
 	curGuanQia = CCUserDefault::sharedUserDefault()->getIntegerForKey("selectedguanqia",0);
 	m_curSpeed = SPEED_X1;
 	m_isShowGoAhead = false;
@@ -80,6 +82,7 @@ void BattleLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 	//判断是否点中速度
 	if(pt.x < 100 && pt.y < 80)
 	{
+		SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 		switch(m_curSpeed)
 		{
 		case SPEED_X1:
@@ -107,6 +110,7 @@ void BattleLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 	}
 	else if(m_isShowGoAhead	&& goahead_rect.containsPoint(pt))
 	{
+		SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 		goahead->stopAllActions();
 		goahead->setVisible(false);
 		m_isShowGoAhead = false;
@@ -126,6 +130,8 @@ void BattleLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 		}
 		else if(m_curPlay == SECOND)
 		{
+			SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+			SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/battle_backgroundmusic2.mp3",true);
 			m_curPlay = THIRD;
 			bk_3->setVisible(true);
 			//初始化怪物活着的
@@ -594,6 +600,8 @@ void BattleLayer::third_monster_play(float)
 //英雄技能
 void BattleLayer::hero_0_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill08.mp3");
 	show_skill_normal(pos,hero,pos_hero_x,pos_hero_y,1,dst,pos_monster_x,pos_monster_y);//发技能
 	show_hit_skill(pos,"blizzard_skill","blizzard_0001.png",dst,pos_monster_x,pos_monster_y);//敌人攻击后的反应
 	show_hit_value(pos,hero_attack,dst,pos_monster_x,pos_monster_y);//显示伤害值
@@ -601,6 +609,8 @@ void BattleLayer::hero_0_skill(int pos,int dst)
 
 void BattleLayer::hero_1_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill01.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill07.mp3");
 	show_skill_normal(pos,hero,pos_hero_x,pos_hero_y,0,dst,pos_monster_x,pos_monster_y);//发技能
 	show_hit_skill(pos,"tenarmy_skill","tenarmy_01.png",dst,pos_monster_x,pos_monster_y);//敌人攻击后的反应
 	show_hit_value(pos,hero_attack,dst,pos_monster_x,pos_monster_y);//显示伤害值
@@ -608,6 +618,8 @@ void BattleLayer::hero_1_skill(int pos,int dst)
 
 void BattleLayer::hero_2_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill06.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill09.mp3");
 	show_skill(pos,hero,pos_hero_x,pos_hero_y,"customattack_skill","attack0002.png",dst);
 	show_hit_skill(pos,"zhongji_skill","zhongji_shan0001.png",dst,pos_monster_x,pos_monster_y);//敌人攻击后的反应
 	show_hit_value(pos,hero_attack,dst,pos_monster_x,pos_monster_y);//显示伤害值
@@ -615,6 +627,8 @@ void BattleLayer::hero_2_skill(int pos,int dst)
 
 void BattleLayer::hero_3_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill03.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill10.mp3");
 	show_skill(pos,hero,pos_hero_x,pos_hero_y,"heal_skill","heal_1.png",dst);
 	show_hit_skill(pos,"thunder_skill","thunder_dian.png",dst,pos_monster_x,pos_monster_y);//敌人攻击后的反应
 	show_hit_value(pos,hero_attack,dst,pos_monster_x,pos_monster_y);//显示伤害值
@@ -622,6 +636,8 @@ void BattleLayer::hero_3_skill(int pos,int dst)
 
 void BattleLayer::hero_4_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill04.mp3");
 	show_skill_normal(pos,hero,pos_hero_x,pos_hero_y,1,dst,pos_monster_x,pos_monster_y);//发技能
 	show_hit_skill(pos,"rock_skill","thunder_shandian.png",dst,pos_monster_x,pos_monster_y);//敌人攻击后的反应
 	show_hit_value(pos,hero_attack,dst,pos_monster_x,pos_monster_y);//显示伤害值
@@ -629,36 +645,48 @@ void BattleLayer::hero_4_skill(int pos,int dst)
 //怪物技能(小怪)
 void BattleLayer::monster_0_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill05.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,1,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"windhit_skill","windhit_01.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
 }
 void BattleLayer::monster_1_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill01.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill08.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,0,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"blizzard_skill","blizzard_0001.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
 }
 void BattleLayer::monster_2_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill05.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,1,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"windhit_skill","windhit_01.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
 }
 void BattleLayer::monster_3_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill01.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill08.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,0,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"blizzard_skill","blizzard_0001.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
 }
 void BattleLayer::monster_4_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill05.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,1,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"windhit_skill","windhit_01.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
 }
 void BattleLayer::monster_5_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill01.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill08.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,0,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"blizzard_skill","blizzard_0001.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
@@ -666,7 +694,8 @@ void BattleLayer::monster_5_skill(int pos,int dst)
 //怪物技能(大怪)
 void BattleLayer::monster_6_skill(int pos,int dst)
 {
-	//show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,0,dst,pos_hero_x,pos_hero_y);
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill08.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill10.mp3");
 	show_skill(pos,monster,pos_monster_x,pos_monster_y,"heal_skill","heal_1.png",dst);
 	show_hit_skill(pos,"blizzard_skill","blizzard_0001.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
@@ -674,6 +703,8 @@ void BattleLayer::monster_6_skill(int pos,int dst)
 
 void BattleLayer::monster_7_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill06.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill09.mp3");
 	show_skill(pos,monster,pos_monster_x,pos_monster_y,"customattack_skill","attack0002.png",dst);
 	show_hit_skill(pos,"zhongji_skill","zhongji_shan0001.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
@@ -681,6 +712,8 @@ void BattleLayer::monster_7_skill(int pos,int dst)
 
 void BattleLayer::monster_8_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill01.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill03.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,0,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"thunder_skill","thunder_dian.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
@@ -688,6 +721,8 @@ void BattleLayer::monster_8_skill(int pos,int dst)
 
 void BattleLayer::monster_9_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill05.mp3");
 	show_skill_normal(pos,monster,pos_monster_x,pos_monster_y,1,dst,pos_hero_x,pos_hero_y);
 	show_hit_skill(pos,"windhit_skill","windhit_01.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
@@ -695,6 +730,8 @@ void BattleLayer::monster_9_skill(int pos,int dst)
 
 void BattleLayer::monster_10_skill(int pos,int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill07.mp3");
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_skill10.mp3");
 	show_skill(pos,monster,pos_monster_x,pos_monster_y,"heal_skill","heal_1.png",dst);
 	show_hit_skill(pos,"tenarmy_skill","tenarmy_01.png",dst,pos_hero_x,pos_hero_y);
 	show_hit_value(pos,monster_attack,dst,pos_hero_x,pos_hero_y);
@@ -725,6 +762,7 @@ void BattleLayer::runcardshake()
 //背景向后走
 void BattleLayer::runBK()
 {
+	effectId = SimpleAudioEngine::sharedEngine()->playEffect("mp3/battle_run.mp3",true);
 	CCMoveBy* by1 = CCMoveBy::create(0.1f,ccp(0,-45));
 	bk_1->runAction(CCSequence::create(CCRepeat::create(by1,11),CCCallFunc::create(this,callfunc_selector(BattleLayer::adjustBK1)),NULL));
 	CCMoveBy* by2 = CCMoveBy::create(0.1f,ccp(0,-45));
@@ -733,6 +771,7 @@ void BattleLayer::runBK()
 
 void BattleLayer::adjustBK1()
 {
+	SimpleAudioEngine::sharedEngine()->stopEffect(effectId);
 	if(bkmovecount == 1)bk_1->setPosition(ccp(visibleSize.width/2,0));
 	else  bk_1->setPosition(ccp(visibleSize.width/2,-visibleSize.height/2));
 }
@@ -854,6 +893,7 @@ void BattleLayer::remove_hit_skill(CCNode* pSender,void* p)
 				}
 			}
 			hero[dst]->setVisible(false);
+			SimpleAudioEngine::sharedEngine()->playEffect("mp3/battle_herodead.mp3");
 		}
 	}
 }
@@ -880,6 +920,7 @@ void BattleLayer::remove_hit_value(CCNode* pSender)
 //怪物死亡
 void BattleLayer::monster_die(int dst)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/battle_monsterdead.mp3");
 	CCRepeat* monster_shock = CCRepeat::create(CCSequence::create(CCRotateTo::create(0.1f,-10),CCRotateTo::create(0.1f,10),CCRotateTo::create(0.1f,0),NULL),2);
 	int* p = new int(dst);
 	monster[dst]->runAction(CCSequence::create(monster_shock,CCCallFuncND::create(this,callfuncND_selector(BattleLayer::show_ghost),p),NULL));
@@ -925,6 +966,9 @@ void BattleLayer::show_allmonster(float)
 //显示战斗胜利
 void BattleLayer::showVictory()
 {
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/battle_win.mp3");
+	CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);//恢复到原来的速度
 	CCUserDefault::sharedUserDefault()->setBoolForKey("BattleResult",true);
 	result = CCNode::create();
 	result->setPosition(ccp(320,700));
@@ -968,12 +1012,14 @@ void BattleLayer::showVictory()
 		//返回到副本界面
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
 	}
-	
-	this->scheduleOnce(schedule_selector(BattleLayer::showReult),2.5f);
+	this->scheduleOnce(schedule_selector(BattleLayer::showReult),4.0f);
 }
 //战斗失败
 void BattleLayer::showFail()
 {
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/battle_failed.mp3");
+	CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);//恢复到原来的速度
 	CCUserDefault::sharedUserDefault()->setBoolForKey("BattleResult",false);
 	result = CCNode::create();
 	result->setPosition(ccp(320,700));
@@ -1011,19 +1057,20 @@ void BattleLayer::showFail()
 		//返回到副本界面
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
 	}
-	this->scheduleOnce(schedule_selector(BattleLayer::showReult),2.5f);
+	this->scheduleOnce(schedule_selector(BattleLayer::showReult),4.0f);
 }
 
 //显示结果
 void BattleLayer::showReult(float)
 {
-	CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);//恢复到原来的速度
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/main.mp3",true);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("showBatleResult");
 	CCDirector::sharedDirector()->popScene();
 }
 
 void BattleLayer::showText(float)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/battle_battlestart.mp3");
 	if(m_curPlay == FIRST)
 	{
 		CCSprite* fight1 = CCSprite::createWithSpriteFrameName("fightstar_word_fight1.png");

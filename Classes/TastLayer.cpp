@@ -69,5 +69,6 @@ void TastLayer::initTastList()
 
 void TastLayer::menu_returncallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnToMain");
 }

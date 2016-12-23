@@ -1,12 +1,15 @@
 #include "CopyrightScene.h"
 #include "Hero.h"
 #include "Archives.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 bool CopyrightScene::init()
 {
 	if(!CCScene::init())return false;
 	LoadPicResoureToCache();
-	LoadHeroProperty();
+	LoadBackgroundMisic();
+	Archives::sharedArchives();//加载存档
 	this->copyrightLayer = CopyrightLayer::create();
 	this->addChild(this->copyrightLayer);
 	return true;
@@ -16,7 +19,6 @@ bool CopyrightScene::init()
 void CopyrightScene::LoadPicResoureToCache()
 {
 	CCSpriteFrameCache * pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0000_0004.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0329_0335.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0337_0343.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0345_0351.plist");
@@ -25,8 +27,6 @@ void CopyrightScene::LoadPicResoureToCache()
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_frame_purpleandyellow.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_frame_white.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/eatcard_part1.plist");
-	pSpriteFrameCache->addSpriteFramesWithFile("ui/equipment_part1.plist");
-	pSpriteFrameCache->addSpriteFramesWithFile("ui/equipment_part2.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/evolution.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/fight_star.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/fight_victroy.plist");
@@ -58,10 +58,33 @@ void CopyrightScene::LoadPicResoureToCache()
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/ui_serverlist.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/ui_text.plist");
 }
-//加载存档
-void CopyrightScene::LoadHeroProperty()
+
+void CopyrightScene::LoadBackgroundMisic()
 {
-	Archives::sharedArchives();
-	//游戏开发完成后再存档
-	//Archives::sharedArchives()->setArchives();
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/startgame.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/story.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/main.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/battle_backgroundmusic1.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/battle_backgroundmusic2.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_select.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_horelevelup.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_horeselected.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/battle_battlestart.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/battle_failed.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/battle_herodead.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/battle_monsterdead.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/battle_run.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/battle_win.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill01.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill02.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill03.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill04.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill05.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill06.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill07.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill08.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill09.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_skill10.mp3");
+	SimpleAudioEngine::sharedEngine()->preloadEffect("mp3/sound_choujiang.mp3");
 }
+

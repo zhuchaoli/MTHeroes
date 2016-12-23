@@ -9,8 +9,8 @@ bool StoryLayer::init()
 	if(!CCLayer::init())return false;
 	this->xingxing = NULL;
 	//加载开场动画的背景音乐
-	//SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/login.mp3");
-	//SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/login.mp3");
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/story.mp3");
 	//跳过动画场景的菜单
 	CCSprite * passStoryNor = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("login_textbase.png"));
 	CCSprite * passStorySel = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("login_textbase.png"));

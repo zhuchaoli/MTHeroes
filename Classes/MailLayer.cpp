@@ -156,6 +156,7 @@ void MailLayer::addmail()
 
 void MailLayer::diamonmenu_callback(CCObject* psender)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	img_h2->setVisible(false);
 	diamon_sign1->setVisible(false);
 	diamon_sign2->setVisible(true);
@@ -165,6 +166,7 @@ void MailLayer::diamonmenu_callback(CCObject* psender)
 
 void MailLayer::moneymenu_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	img_h1->setVisible(false);
 	money_sign1->setVisible(false);
 	money_sign2->setVisible(true);
@@ -174,6 +176,7 @@ void MailLayer::moneymenu_callback(CCObject*)
 
 void MailLayer::menu_returncallback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnToMain");
 }
 

@@ -152,6 +152,7 @@ bool BattleResultLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void BattleResultLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	this->removeFromParent();
 }
 

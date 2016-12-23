@@ -9,6 +9,9 @@
 bool MainUIScene::init()
 {
 	if(!CCScene::init())return false;
+	SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/main.mp3",true);
+	SimpleAudioEngine::sharedEngine()->setEffectsVolume(1.0);
 	mainuilayer = NULL;
 	multilayer = NULL;
 	configureMultiplexLayer();
@@ -27,30 +30,35 @@ bool MainUIScene::init()
 
 void MainUIScene::button_Homepage(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	multilayer->switchTo(0);
 	mainuilayer->restoreToMainUI();
 }
 
 void MainUIScene::button_Instance(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	multilayer->switchTo(1);
 	instancelayer->restoreToInstanceUI();
 }
 
 void MainUIScene::button_Fight(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	multilayer->switchTo(2);
 	arenalayer->restoreToArenaUI();
 }
 
 void MainUIScene::button_Store(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	multilayer->switchTo(3);
 }
 
 void MainUIScene::button_More(CCObject*)
 {
-	//multilayer->switchTo(4);
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
+	multilayer->switchTo(4);
 }
 //添加顶部触摸层
 void MainUIScene::initSysInfoLayer()
@@ -65,7 +73,8 @@ void MainUIScene::configureMultiplexLayer()
 	instancelayer = InstanceLayer::create();
 	arenalayer = ArenaLayer::create();
 	storelayer = StoreLayer::create();
-	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,arenalayer,storelayer,NULL);
+	morelayer = MoreLayer::create();
+	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,arenalayer,storelayer,morelayer,NULL);
 	this->addChild(multilayer,1);
 }
 //顶部UI设计
@@ -147,7 +156,7 @@ void MainUIScene::configureTopUI()
 	CCLabelTTF* texttime = CCLabelTTF::create(AppStringFile::sharedAppStringFile()->getStringForKey("timetext"),"Arial",25);
 	texttime->setPosition(ccp(120,77));
 	top->addChild(texttime);
-	CCLabelTTF* time = CCLabelTTF::create("00:10","Arial",25);
+	CCLabelTTF* time = CCLabelTTF::create("04:59","Arial",25);
 	time->setPosition(ccp(210,77));
 	top->addChild(time);
 	time->setTag(MAIN_TOP_STRENGTH_TIME);
@@ -269,8 +278,6 @@ void MainUIScene::updateStrengthAndExp(CCObject*)
 		rank = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(str->m_sString.c_str()));
 		rank->setPosition(ccp(35,top->getContentSize().height-27));
 		top->addChild(rank);
-		//弹出升级模态对话框
-		//......
 	}
 	exp->setPercentage((100.0*Hero::sharedHero()->getExp())/Hero::sharedHero()->getCurLevelMaxExp());
 	//更新体力值和体力条

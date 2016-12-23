@@ -217,11 +217,13 @@ void CardLevelupLayer::initcontent()
 
 void CardLevelupLayer::menu_return_callback(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnToMain");
 }
 
 void CardLevelupLayer::menu_cardlevelupUI_startlevelup(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	int x[] = {120,120,120,520,520,520};
 	int y[] = {580,480,380,580,480,380};
 	choose_food_item->setEnabled(true);
@@ -288,6 +290,7 @@ void CardLevelupLayer::menu_cardlevelupUI_startlevelup(CCObject*)
 
 void CardLevelupLayer::menu_choose_food(CCObject*)
 {
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_select.mp3");
 	int x[] = {120,120,120,520,520,520};
 	int y[] = {580,480,380,580,480,380};
 	int index = 0;
@@ -423,6 +426,7 @@ void CardLevelupLayer::menu_choose_food(CCObject*)
 
 	choose_food_item->setEnabled(false);
 	startlevelup_item->setEnabled(true);
+	SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_horeselected.mp3");
 }
 
 void CardLevelupLayer::littlecard_flash_done(CCNode* pSender)
@@ -457,6 +461,7 @@ void CardLevelupLayer::update(float)
 	else
 	{
 		unscheduleUpdate();
+		SimpleAudioEngine::sharedEngine()->playEffect("mp3/sound_horelevelup.mp3");
 	}
 }
 
