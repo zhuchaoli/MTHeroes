@@ -45,7 +45,7 @@ void MainUIScene::button_Fight(CCObject*)
 
 void MainUIScene::button_Store(CCObject*)
 {
-	//multilayer->switchTo(3);
+	multilayer->switchTo(3);
 }
 
 void MainUIScene::button_More(CCObject*)
@@ -64,7 +64,8 @@ void MainUIScene::configureMultiplexLayer()
 	mainuilayer = MainUILayer::create();
 	instancelayer = InstanceLayer::create();
 	arenalayer = ArenaLayer::create();
-	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,arenalayer,NULL);
+	storelayer = StoreLayer::create();
+	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,arenalayer,storelayer,NULL);
 	this->addChild(multilayer,1);
 }
 //¶¥²¿UIÉè¼Æ

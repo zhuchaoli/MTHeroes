@@ -4,6 +4,7 @@
 #include "InstanceLayer.h"
 #include "BattleResultLayer.h"
 #include "ArenaLayer.h"
+#include "StoreLayer.h"
 #include <string>
 USING_NS_CC;
 using namespace std;
@@ -30,6 +31,7 @@ private:
 	InstanceLayer* instancelayer;
 	BattleResultLayer* battleresultlayer;
 	ArenaLayer* arenalayer;
+	StoreLayer* storelayer;
 
 	CCLabelTTF* text;
 	CCSprite* rank;//¾ôÎ»

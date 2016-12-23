@@ -35,6 +35,7 @@ private:
 	void showCardLevelupUI();
 	void menu_tastcallback(CCObject*);
 	void showTastUI();
+	void menu_archivescallback(CCObject*);
 	void textlevel_flash(float);
 private:
 	MainUI_CurUI m_curUI;

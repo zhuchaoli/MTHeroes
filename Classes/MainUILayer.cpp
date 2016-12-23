@@ -258,6 +258,7 @@ void MainUILayer::configureMenuUI()
 														this,
 														menu_selector(MainUILayer::menu_cardcallback));
 	carditem->setScaleX(1.2f);
+	carditem->setScaleY(0.9f);
 	CCSprite* text_card = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("text_card.png"));
 	text_card->setPosition(ccp(card_nor->getContentSize().width/2,card_nor->getContentSize().height/2));
 	carditem->addChild(text_card);
@@ -271,6 +272,7 @@ void MainUILayer::configureMenuUI()
 															this,
 															menu_selector(MainUILayer::menu_cardlevelupcallback));
 	levelupitem->setScaleX(1.2f);
+	levelupitem->setScaleY(0.9f);
 	CCSprite* text_levelup = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("text_mix.png"));
 	text_levelup->setPosition(ccp(levelup_nor->getContentSize().width/2,levelup_nor->getContentSize().height/2));
 	levelupitem->addChild(text_levelup);
@@ -285,12 +287,27 @@ void MainUILayer::configureMenuUI()
 														this,
 														menu_selector(MainUILayer::menu_tastcallback));
 	tastitem->setScaleX(1.2f);
+	tastitem->setScaleY(0.9f);
 	CCSprite* text_tast = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("text_tast.png"));
 	text_tast->setPosition(ccp(tast_nor->getContentSize().width/2,tast_nor->getContentSize().height/2));
 	tastitem->addChild(text_tast);
+	//´æµµ
+	CCSprite* archives_nor = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("button_little_0.png"));
+	CCSprite* archives_sel = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("button_little_1.png"));
+	CCSprite* archives_disable = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("button_little_2.png"));
+	CCMenuItemSprite* archivesitem = CCMenuItemSprite::create(archives_nor,
+		archives_sel,
+		archives_disable,
+		this,
+		menu_selector(MainUILayer::menu_archivescallback));
+	archivesitem->setScaleX(1.2f);
+	archivesitem->setScaleY(0.9f);
+	CCLabelTTF* text_archives = CCLabelTTF::create(AppStringFile::sharedAppStringFile()->getStringForKey("text_archives"),"Arial",35);
+	text_archives->setPosition(ccp(archives_nor->getContentSize().width/2,archives_nor->getContentSize().height/2));
+	archivesitem->addChild(text_archives);
 	//²Ëµ¥
-	CCMenu* menu_col = CCMenu::create(carditem,levelupitem,tastitem,NULL);
-	menu_col->alignItemsVerticallyWithPadding(35);
+	CCMenu* menu_col = CCMenu::create(carditem,levelupitem,tastitem,archivesitem,NULL);
+	menu_col->alignItemsVerticallyWithPadding(23);
 	menu->addChild(menu_col);
 	menu_col->setPosition(ccp(visibleSize.width/2,visibleSize.height/2-175));
 }
@@ -382,6 +399,13 @@ void MainUILayer::showTastUI()
 	m_curUI = TAST_UI;
 	tastUI = TastLayer::create();
 	this->addChild(tastUI);
+}
+
+void MainUILayer::menu_archivescallback(CCObject*)
+{
+	Archives::sharedArchives()->setArchives();
+	DialogStringLayer* layer = DialogStringLayer::create(AppStringFile::sharedAppStringFile()->getStringForKey("text_archives_tips"));
+	this->addChild(layer);
 }
 
 void MainUILayer::textlevel_flash(float)

@@ -1,6 +1,7 @@
 //主角类 是一个单例
 #pragma once
 #include "cocos2d.h"
+#include "Archives.h"
 USING_NS_CC;
 using namespace std;
 
@@ -9,7 +10,7 @@ class Hero
 private:
 	Hero();
 	static Hero* m_pHero;
-	class CGarbo
+	class CGarbo //垃圾工人
 	{
 	public:
 		~CGarbo()
@@ -17,7 +18,7 @@ private:
 			if(Hero::m_pHero != NULL)delete Hero::m_pHero;
 		}
 	};
-	static CGarbo m_garbo;//
+	static CGarbo m_garbo;////定义一个静态成员变量，程序结束时，系统会自动调用它的析构函数
 	CC_SYNTHESIZE(string,m_name,Name_);//玩家名字
 	CC_SYNTHESIZE(int,m_level,Level_);//等级
 	CC_SYNTHESIZE(int,m_diamond,Diamond);//符石
