@@ -57,8 +57,8 @@ void CardTeam::getCardTeamPor()
 	seteatedcard0count(userdef->getIntegerForKey("eatedcard0count",2));
 	seteatedcard1count(userdef->getIntegerForKey("eatedcard1count",1));
 	seteatedcard2count(userdef->getIntegerForKey("eatedcard2count",2));
-	seteatedcard3count(userdef->getIntegerForKey("eatedcard3count",0));
-	seteatedcard4count(userdef->getIntegerForKey("eatedcard4count",0));
+	seteatedcard3count(userdef->getIntegerForKey("eatedcard3count",3));
+	seteatedcard4count(userdef->getIntegerForKey("eatedcard4count",2));
 	seteatedcard5count(userdef->getIntegerForKey("eatedcard5count",1));
 }
 

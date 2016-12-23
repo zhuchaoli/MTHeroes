@@ -21,7 +21,6 @@ bool MainUIScene::init()
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(MainUIScene::updateMoneyAndDiamon),"updateMoneyAndDiamon",NULL);
 	//添加更新体力和经验的监听
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(MainUIScene::updateStrengthAndExp),"updateStrengthAndExp",NULL);
-
 	return true;
 }
 
@@ -33,7 +32,8 @@ void MainUIScene::button_Homepage(CCObject*)
 
 void MainUIScene::button_Instance(CCObject*)
 {
-	//multilayer->switchTo(1);
+	multilayer->switchTo(1);
+	instancelayer->restoreToInstanceUI();
 }
 
 void MainUIScene::button_Fight(CCObject*)
@@ -60,7 +60,8 @@ void MainUIScene::initSysInfoLayer()
 void MainUIScene::configureMultiplexLayer()
 {
 	mainuilayer = MainUILayer::create();
-	multilayer = CCLayerMultiplex::create(mainuilayer,NULL);
+	instancelayer = InstanceLayer::create();
+	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,NULL);
 	this->addChild(multilayer,1);
 }
 //顶部UI设计
@@ -210,8 +211,7 @@ void MainUIScene::configureButtonUI()
 	CCMenu* mainmenu = CCMenu::create(homepageitemspr,instanceitemspr,fightitemspr,storeitemspr,moreitemspr,NULL);
 	mainmenu->alignItemsHorizontallyWithPadding(-10);
 	mainmenu->setPosition(ccp(visibleSize.width/2,button_homepage_nor->getContentSize().height/2-5));
-	this->addChild(mainmenu,2);
-
+	this->addChild(mainmenu,2);//加载到场景第二层
 }
 //系统公告
 void MainUIScene::scrollText()
@@ -225,7 +225,15 @@ void MainUIScene::scrollText()
 
 void MainUIScene::show_BattleResult(CCObject*)
 {
-
+	//扣除体力
+	Hero::sharedHero()->setStrength(Hero::sharedHero()->getStrength() - 5);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("updateStrengthAndExp");
+	//返回到副本界面
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
+	bool battleres = CCUserDefault::sharedUserDefault()->getBoolForKey("BattleResult",false);
+	if(battleres == false)return;    //战斗失败
+	battleresultlayer = BattleResultLayer::create();
+	this->addChild(battleresultlayer,4);//必须放在第4层
 }
 
 void MainUIScene::updateMoneyAndDiamon(CCObject*)

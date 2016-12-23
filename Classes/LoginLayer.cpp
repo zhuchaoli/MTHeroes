@@ -4,12 +4,6 @@
 #include "SimpleAudioEngine.h"
 using namespace CocosDenshion;
 
-//如果是运行在安卓平台 则会生效的代码
-//#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//#include <jni.h>
-//#include "platform/android/jni/JniHelper.h"
-//#endif
-
 bool LoginLayer::init()
 {
 	if(!CCLayer::init())return false;
@@ -17,7 +11,6 @@ bool LoginLayer::init()
 	//SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic("mp3/Music_aihao.mp3");
 	//SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/Music_aihao.mp3");
 	initUI();
-	initWebView();
 	return true;
 }
 
@@ -90,24 +83,6 @@ void LoginLayer::initUI()
 	startGameMenu->runAction(CCRepeatForever::create(seq));
 }
 
-//在安卓平台 会生效
-void LoginLayer::initWebView()
-{
-//#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) //判断当前是否为Android平台 
-//	JniMethodInfo minfo;//定义Jni函数信息结构体 
-//	//函数返回一个bool值表示是否找到此函数 
-//	bool isHave = JniHelper::getStaticMethodInfo(minfo,"","", "");  
-//	if(isHave) 
-//	{
-//		jobj = minfo.env->CallStaticObjectMethod(minfo.classID, minfo.methodID); 
-//		isHave = JniHelper::getMethodInfo(minfo,"","","()V");
-//		if(isHave)
-//		{
-//		     minfo.env->CallVoidMethod(jobj,minfo.methodID);
-//		}
-//	} 
-//#endif 
-}
 //跳转到开场动画场景
 void LoginLayer::startGame(CCObject *pSender)
 {

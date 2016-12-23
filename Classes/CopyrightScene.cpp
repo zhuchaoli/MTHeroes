@@ -16,6 +16,7 @@ bool CopyrightScene::init()
 void CopyrightScene::LoadPicResoureToCache()
 {
 	CCSpriteFrameCache * pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0000_0004.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0329_0335.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0337_0343.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_0345_0351.plist");
@@ -24,6 +25,8 @@ void CopyrightScene::LoadPicResoureToCache()
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_frame_purpleandyellow.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/bigcard_frame_white.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/eatcard_part1.plist");
+	pSpriteFrameCache->addSpriteFramesWithFile("ui/equipment_part1.plist");
+	pSpriteFrameCache->addSpriteFramesWithFile("ui/equipment_part2.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/evolution.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/fight_star.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/fight_victroy.plist");
@@ -55,25 +58,10 @@ void CopyrightScene::LoadPicResoureToCache()
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/ui_serverlist.plist");
 	pSpriteFrameCache->addSpriteFramesWithFile("ui/ui_text.plist");
 }
-//加载存档 读取英雄属性
+//加载存档
 void CopyrightScene::LoadHeroProperty()
 {
-	if(Archives::sharedArchives()->isExist())
-	{
-		Archives::sharedArchives()->getHero_Property(*(Hero::sharedHero()));
-	}
-	else
-	{
-		Hero::sharedHero()->setName_("zhuchaoli");
-		Hero::sharedHero()->setLevel_(1);
-		Hero::sharedHero()->setDiamond(0);
-		Hero::sharedHero()->setExp(0);
-		Hero::sharedHero()->setCurLevelMaxExp(100);
-		Hero::sharedHero()->setStrength(0);
-		Hero::sharedHero()->setMoney(0);
-		Hero::sharedHero()->setTeamLv(2141);
-		Hero::sharedHero()->setRank(1);
-		Archives::sharedArchives()->setHero_property(*Hero::sharedHero());
-		CCUserDefault::sharedUserDefault()->setBoolForKey("isHaveSaveFileXml",true);
-	}
+	Archives::sharedArchives();
+	//游戏开发完成后再存档
+	//Archives::sharedArchives()->setArchives();
 }

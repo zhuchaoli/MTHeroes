@@ -30,4 +30,8 @@ private:
 	CC_SYNTHESIZE(int,m_rank,Rank);//¾ôÎ» ¾üÏÎ
 public:
 	static Hero* sharedHero();
+	//¶Áµµ
+	void getHero_Property();
+	//´æµµ
+	void setHero_property();
 };

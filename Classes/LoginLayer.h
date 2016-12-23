@@ -9,6 +9,5 @@ public:
 	bool init();
 private:
 	void initUI();
-	void initWebView();
 	void startGame(CCObject *);
 };

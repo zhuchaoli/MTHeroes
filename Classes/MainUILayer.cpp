@@ -45,7 +45,6 @@ void MainUILayer::restoreToMainUI()
 		configureMenuUI();
 		break;
 	case MAIN_UI:
-		//this->schedule(schedule_selector(MainUILayer::textlevel_flash),0.8f);
 		break;
 	default:
 		break;
@@ -383,16 +382,6 @@ void MainUILayer::showTastUI()
 	m_curUI = TAST_UI;
 	tastUI = TastLayer::create();
 	this->addChild(tastUI);
-}
-
-void MainUILayer::menu_salecallback(CCObject*)
-{
-
-}
-
-void MainUILayer::showSaleUI()
-{
-
 }
 
 void MainUILayer::textlevel_flash(float)

@@ -14,7 +14,6 @@ enum MainUI_CurUI
 	CARD_UI,   /*Ó¢ÐÛ(¿¨ÅÆ½ÇÉ«)*/
 	LEVELUP_UI,/*Éý¼¶*/
 	TAST_UI,/*½±Àø*/
-	SALE_UI/**/
 };
 
 class MainUILayer : public CCLayer
@@ -36,8 +35,6 @@ private:
 	void showCardLevelupUI();
 	void menu_tastcallback(CCObject*);
 	void showTastUI();
-	void menu_salecallback(CCObject*);
-	void showSaleUI();
 	void textlevel_flash(float);
 private:
 	MainUI_CurUI m_curUI;

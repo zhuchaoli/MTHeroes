@@ -1,6 +1,8 @@
 #pragma once
 #include "cocos2d.h"
 #include "MainUILayer.h"
+#include "InstanceLayer.h"
+#include "BattleResultLayer.h"
 #include <string>
 USING_NS_CC;
 using namespace std;
@@ -24,6 +26,9 @@ public:
 private:
 	CCLayerMultiplex* multilayer;
 	MainUILayer* mainuilayer;
+	InstanceLayer* instancelayer;
+	BattleResultLayer* battleresultlayer;
+
 	CCLabelTTF* text;
 	CCSprite* rank;//¾ôÎ»
 	CCLabelTTF* lv;//µÈ¼¶
