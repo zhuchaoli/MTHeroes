@@ -1,7 +1,6 @@
 //主角类 是一个单例
 #pragma once
 #include "cocos2d.h"
-#include <vector>
 USING_NS_CC;
 using namespace std;
 
@@ -28,6 +27,7 @@ private:
 	CC_SYNTHESIZE(int,m_money,Money);//金币
 	CC_SYNTHESIZE(int,m_teamlv,TeamLv);//卡牌团队的实力
 	CC_SYNTHESIZE(int,m_rank,Rank);//爵位 军衔
+	CC_SYNTHESIZE(int,m_curchallengegq,CurChallengeGQ);//当前挑战的关卡;
 public:
 	static Hero* sharedHero();
 	//读档

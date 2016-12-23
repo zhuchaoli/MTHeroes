@@ -27,6 +27,7 @@ void Hero::getHero_Property()
 	m_money = userdefault->getIntegerForKey("Hero_Money",0);
 	m_teamlv = userdefault->getIntegerForKey("Hero_TeamLv",2141);
 	m_rank = userdefault->getIntegerForKey("Hero_Rank",1);
+	m_curchallengegq = userdefault->getIntegerForKey("Hero_CurChallengeGQ",0);
 }
 
 void Hero::setHero_property()
@@ -41,6 +42,7 @@ void Hero::setHero_property()
 	userdefault->setIntegerForKey("Hero_Money",getMoney());
 	userdefault->setIntegerForKey("Hero_TeamLv",getTeamLv());
 	userdefault->setIntegerForKey("Hero_Rank",getRank());
+	userdefault->setIntegerForKey("Hero_CurChallengeGQ",getCurChallengeGQ());
 	userdefault->flush();
 }
 

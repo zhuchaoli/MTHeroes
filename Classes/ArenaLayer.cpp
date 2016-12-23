@@ -1,10 +1,10 @@
-#include "InstanceLayer.h"
+#include "ArenaLayer.h"
 #include "AppMacros.h"
 #include "AppStringFile.h"
 #include "BattleLayer.h"
 #include "Hero.h"
 
-bool InstanceLayer::init()
+bool ArenaLayer::init()
 {
 	if(!CCLayer::init())return false;
 	pos_x[0] = pos_x[3] = 160;
@@ -12,16 +12,16 @@ bool InstanceLayer::init()
 	pos_x[1] = 320;
 	pos_y[0] = pos_y[1] = pos_y[2] = 550;
 	pos_y[3] = pos_y[4] = 390;
-	m_curUI = INSTANCE_UI;
-	norinstancelayer = NULL;
+	m_curUI = ARENA_UI;
+	arenalistlayer = NULL;
 	initframe();
 	//注册两个监听
-	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(InstanceLayer::return_instance),"ReturnInstance",NULL);
-	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(InstanceLayer::return_lineup),"ReturnLineup",NULL);
+	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(ArenaLayer::return_arena),"ReturnArena",NULL);
+	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(ArenaLayer::return_lineup),"ReturnLineup2",NULL);
 	return true;
 }
 
-void InstanceLayer::initframe()
+void ArenaLayer::initframe()
 {
 	//中间背景
 	listbase = CCSprite::create("ui/listbase_1.jpg");
@@ -44,19 +44,19 @@ void InstanceLayer::initframe()
 	middletitlebase->setPosition(ccp(visibleSize.width/2,700));
 	this->addChild(middletitlebase,3);
 	//标题
-	title_custom_instance = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("titlename_instance_custom.png"));
-	title_custom_instance->setPosition(ccp(visibleSize.width/2,690));
-	this->addChild(title_custom_instance,4);
+	title_custom_arena = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("titlename_arena.png"));
+	title_custom_arena->setPosition(ccp(visibleSize.width/2,690));
+	this->addChild(title_custom_arena,4);
 }
 
-void InstanceLayer::initList()
+void ArenaLayer::initList()
 {
-	norinstancelayer = NorInstanceListLayer::create();
-	norinstancelayer->setPosition(ccp(20,160));
-	this->addChild(norinstancelayer,2);
+	arenalistlayer = ArenaListLayer::create();
+	arenalistlayer->setPosition(ccp(20,160));
+	this->addChild(arenalistlayer,2);
 }
 
-void InstanceLayer::return_instance(CCObject*)
+void ArenaLayer::return_arena(CCObject*)
 {
 	this->removeChild(title_custom_lineup);
 	title_custom_lineup = NULL;
@@ -65,18 +65,18 @@ void InstanceLayer::return_instance(CCObject*)
 	//重新更新背景
 	listbase->setTexture(CCTextureCache::sharedTextureCache()->addImage("ui/listbase_1.jpg"));
 	//重新加载标题
-	title_custom_instance = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("titlename_instance_custom.png"));
-	title_custom_instance->setPosition(ccp(visibleSize.width/2,690));
-	this->addChild(title_custom_instance,4);
+	title_custom_arena = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("titlename_arena.png"));
+	title_custom_arena->setPosition(ccp(visibleSize.width/2,690));
+	this->addChild(title_custom_arena,4);
 	initList();//重新加载列表
-	m_curUI = INSTANCE_UI;
+	m_curUI = ARENA_UI;
 }
 
-void InstanceLayer::return_lineup(CCObject*)
+void ArenaLayer::return_lineup(CCObject*)
 {
-	this->removeChild(norinstancelayer);
-	norinstancelayer = NULL;
-	this->removeChild(title_custom_instance);
+	this->removeChild(arenalistlayer);
+	arenalistlayer = NULL;
+	this->removeChild(title_custom_arena);
 	//重新更新背景
 	listbase->setTexture(CCTextureCache::sharedTextureCache()->addImage("ui/confirmlinebase.jpg"));
 	listbase->setScaleY(0.99f);
@@ -92,7 +92,7 @@ void InstanceLayer::return_lineup(CCObject*)
 																	button_left_sel,
 																	button_left_disable,
 																	this,
-																	menu_selector(InstanceLayer::return_instance));
+																	menu_selector(ArenaLayer::return_arena));
 	CCSprite* text_return = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("text_return.png"));
 	text_return->setPosition(ccp(button_left_nor->getContentSize().width/2-15,button_left_nor->getContentSize().height/2));
 	button_left_item->addChild(text_return);
@@ -158,7 +158,7 @@ void InstanceLayer::return_lineup(CCObject*)
 																button_sel,
 																button_disable,
 																this,
-																menu_selector(InstanceLayer::menu_start_battle));
+																menu_selector(ArenaLayer::menu_start_battle));
 	CCSprite* text_starin = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("text_starin.png"));
 	text_starin->setPosition(ccp(button_nor->getContentSize().width/2,button_nor->getContentSize().height/2));
 	button_start_item->addChild(text_starin);
@@ -169,17 +169,17 @@ void InstanceLayer::return_lineup(CCObject*)
 	m_curUI = LINEUP_UI;
 }
 
-void InstanceLayer::menu_start_battle(CCObject*)
+void ArenaLayer::menu_start_battle(CCObject*)
 {
 	//使用pushScene
 	CCDirector::sharedDirector()->pushScene(BattleLayer::scene());
 	
 }
 //返回到副本界面
-void InstanceLayer::restoreToInstanceUI()
+void ArenaLayer::restoreToArenaUI()
 {
 	if(m_curUI == LINEUP_UI)
 	{
-		return_instance(NULL);
+		return_arena(NULL);
 	}
 }

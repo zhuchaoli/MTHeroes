@@ -2,6 +2,8 @@
 #include "AppMacros.h"
 #include "AppStringFile.h"
 #include "CardTeam.h"
+#include "Hero.h"
+#include "GuanQiaState.h"
 
 CCScene* BattleLayer::scene()
 {
@@ -950,7 +952,23 @@ void BattleLayer::showVictory()
 	victory_word->setOpacity(0);
 	victory_word->setScale(0.2f);
 	victory_word->runAction(CCSpawn::create(CCScaleTo::create(0.2f,1.0f),CCFadeIn::create(0.2f),NULL));
-
+	if(curGuanQia == Hero::sharedHero()->getCurChallengeGQ())//在竞技场
+	{
+		//更新关卡状态
+		GuanQiaState::sharedGuanQiaState()->isComplete_GuanQia[curGuanQia] = true;
+		Hero::sharedHero()->setCurChallengeGQ(Hero::sharedHero()->getCurChallengeGQ() + 1);
+		//返回到战斗界面
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnArena");
+		//去更新副本界面
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnLineup");
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
+	}
+	else
+	{
+		//返回到副本界面
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
+	}
+	
 	this->scheduleOnce(schedule_selector(BattleLayer::showReult),2.5f);
 }
 //战斗失败
@@ -983,7 +1001,16 @@ void BattleLayer::showFail()
 	failed_word->setOpacity(0);
 	failed_word->setScale(0.2f);
 	failed_word->runAction(CCSpawn::create(CCScaleTo::create(0.2f,1.0f),CCFadeIn::create(0.2f),NULL));
-
+	if(curGuanQia == Hero::sharedHero()->getCurChallengeGQ())//在竞技场
+	{
+		//返回到战斗界面
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnArena");
+	}
+	else
+	{
+		//返回到副本界面
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
+	}
 	this->scheduleOnce(schedule_selector(BattleLayer::showReult),2.5f);
 }
 

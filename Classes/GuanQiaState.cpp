@@ -39,9 +39,9 @@ void GuanQiaState::getGuanQiaState()
 		isComplete_GuanQia[i] = userdefault->getBoolForKey(str->m_sString.c_str(),false);
 	}
 	//调试时 使用
-	isComplete_GuanQia[0] = true;
+	/*isComplete_GuanQia[0] = true;
 	isComplete_GuanQia[1] = true;
 	isComplete_GuanQia[2] = true;
-	isComplete_GuanQia[3] = true;
+	isComplete_GuanQia[3] = true;*/
 }
 

@@ -3,6 +3,7 @@
 #include "Hero.h"
 #include "ValueConvert.h"
 #include "AppStringFile.h"
+#include "GuanQiaState.h"
 #include "MainTopUITouchLayer.h"
 
 bool MainUIScene::init()
@@ -38,7 +39,8 @@ void MainUIScene::button_Instance(CCObject*)
 
 void MainUIScene::button_Fight(CCObject*)
 {
-	//multilayer->switchTo(2);
+	multilayer->switchTo(2);
+	arenalayer->restoreToArenaUI();
 }
 
 void MainUIScene::button_Store(CCObject*)
@@ -61,7 +63,8 @@ void MainUIScene::configureMultiplexLayer()
 {
 	mainuilayer = MainUILayer::create();
 	instancelayer = InstanceLayer::create();
-	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,NULL);
+	arenalayer = ArenaLayer::create();
+	multilayer = CCLayerMultiplex::create(mainuilayer,instancelayer,arenalayer,NULL);
 	this->addChild(multilayer,1);
 }
 //顶部UI设计
@@ -228,10 +231,9 @@ void MainUIScene::show_BattleResult(CCObject*)
 	//扣除体力
 	Hero::sharedHero()->setStrength(Hero::sharedHero()->getStrength() - 5);
 	CCNotificationCenter::sharedNotificationCenter()->postNotification("updateStrengthAndExp");
-	//返回到副本界面
-	CCNotificationCenter::sharedNotificationCenter()->postNotification("ReturnInstance");
 	bool battleres = CCUserDefault::sharedUserDefault()->getBoolForKey("BattleResult",false);
 	if(battleres == false)return;    //战斗失败
+	
 	battleresultlayer = BattleResultLayer::create();
 	this->addChild(battleresultlayer,4);//必须放在第4层
 }

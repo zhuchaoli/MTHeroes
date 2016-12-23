@@ -3,6 +3,7 @@
 #include "MainUILayer.h"
 #include "InstanceLayer.h"
 #include "BattleResultLayer.h"
+#include "ArenaLayer.h"
 #include <string>
 USING_NS_CC;
 using namespace std;
@@ -28,6 +29,7 @@ private:
 	MainUILayer* mainuilayer;
 	InstanceLayer* instancelayer;
 	BattleResultLayer* battleresultlayer;
+	ArenaLayer* arenalayer;
 
 	CCLabelTTF* text;
 	CCSprite* rank;//¾ôÎ»
