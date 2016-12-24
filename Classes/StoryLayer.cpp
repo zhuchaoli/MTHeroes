@@ -352,12 +352,6 @@ void StoryLayer::beginScene5()
 
 void StoryLayer::endScene5(float)
 {
-	/*CCFadeOut* fadeout1 = CCFadeOut::create(1.0f);
-	text[11]->runAction(fadeout1);
-	CCFadeOut* fadeout2 = CCFadeOut::create(1.0f);
-	text[12]->runAction(fadeout2);
-	CCFadeOut* fadeout3 = CCFadeOut::create(1.0f);
-	text[13]->runAction(fadeout3);*/
 	this->removeAllChildren();
 	CCDirector::sharedDirector()->replaceScene(MainUIScene::create());
 }

@@ -11,7 +11,7 @@ class Archives
 private:
 	Archives();
 	static Archives* m_pArchives;
-	class CGarbo
+	class CGarbo //À¬»ø¹¤ÈË
 	{
 	public:
 		~CGarbo()
@@ -24,5 +24,6 @@ public:
 	static Archives* sharedArchives();
 	//¶Áµµ
 	void getArchives();
+	//´æµµ
 	void setArchives();
 };

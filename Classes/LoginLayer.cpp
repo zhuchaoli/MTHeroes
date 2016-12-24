@@ -7,7 +7,7 @@ bool LoginLayer::init()
 	if(!CCLayer::init())return false;
 	//µÇÂ¼³¡¾°µÄ±³¾°ÒôÀÖ
 	SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.5f);
-	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/startgame.mp3",true);
+	SimpleAudioEngine::sharedEngine()->playBackgroundMusic("mp3/startgame.mp3",true);//Ñ­»·²¥·Å
 	initUI();
 	return true;
 }
