@@ -4,7 +4,7 @@ CardTeam* CardTeam::m_pCardTeam = NULL;
 
 CardTeam::CardTeam()
 {
-	getCardTeamPor();//¶Áµ±
+	getCardTeamPor();//¶Áµµ
 }
 
 CardTeam* CardTeam::sharedCardTeam()
