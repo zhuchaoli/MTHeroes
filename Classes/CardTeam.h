@@ -44,11 +44,7 @@ public:
 	void setLifeByKey(int index,int var);
 	//由index设置队员的攻击
 	void setAttackByKey(int index,int var);
-	//由index得到卡牌的数量
-	int getEatedCardCountByKey(int index);
-	//由index设置卡牌的数量
-	void setEatedCardCountByKey(int index,int var);
-	int getEatedCardTotalCount();
+	
 //以下是吞噬卡牌的数量
 	CC_SYNTHESIZE(int,m_eatedcard0count,eatedcard0count);
 	CC_SYNTHESIZE(int,m_eatedcard1count,eatedcard1count);
@@ -56,4 +52,9 @@ public:
 	CC_SYNTHESIZE(int,m_eatedcard3count,eatedcard3count);
 	CC_SYNTHESIZE(int,m_eatedcard4count,eatedcard4count);
 	CC_SYNTHESIZE(int,m_eatedcard5count,eatedcard5count);
+	//由index得到卡牌的数量
+	int getEatedCardCountByKey(int index);
+	//由index设置卡牌的数量
+	void setEatedCardCountByKey(int index,int var);
+	int getEatedCardTotalCount();
 };

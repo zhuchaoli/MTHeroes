@@ -20,7 +20,7 @@ private:
 	
 public:
 	static GuanQiaState* sharedGuanQiaState();
-	bool isComplete_GuanQia[21];
+	bool isComplete_GuanQia[21];//记录关卡是否通关
 	void setGuanQiaState();
 	void getGuanQiaState();
 };

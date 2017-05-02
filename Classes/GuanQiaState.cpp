@@ -1,11 +1,11 @@
 #include "GuanQiaState.h"
 
+GuanQiaState* GuanQiaState::m_pGuanQiaState = NULL;
+
 GuanQiaState::GuanQiaState()
 {
 	getGuanQiaState();
 }
-
-GuanQiaState* GuanQiaState::m_pGuanQiaState = NULL;
 
 GuanQiaState* GuanQiaState::sharedGuanQiaState()
 {

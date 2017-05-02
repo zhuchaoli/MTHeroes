@@ -1,4 +1,4 @@
-//主角类 是一个单例
+//玩家数据 是一个单例
 #pragma once
 #include "cocos2d.h"
 #include "Archives.h"
