@@ -28,7 +28,6 @@ void LoginLayer::initUI()
 	CCSprite * daxiaojie = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("login_daxiaojie.png"));
 	daxiaojie->setAnchorPoint(ccp(1,0));
 	daxiaojie->setPosition(ccp(visibleSize.width+daxiaojie->getContentSize().width,visibleSize.height/2*0.8));
-	//daxiaojie->setScale(0.65f);
 	this->addChild(daxiaojie);
 	CCMoveBy* daxiaojieMove = CCMoveBy::create(0.2f,ccp(-daxiaojie->getContentSize().width,0));
 	daxiaojie->runAction(daxiaojieMove);
@@ -36,7 +35,6 @@ void LoginLayer::initUI()
 	CCSprite * shaman = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("login_shaman.png"));
 	shaman->setAnchorPoint(ccp(0,1));
 	shaman->setPosition(ccp(-shaman->getContentSize().width,visibleSize.height/2*1.2));
-	//shaman->setScale(0.6f);
 	this->addChild(shaman);
 	CCMoveBy* shamanMove = CCMoveBy::create(0.2f,ccp(shaman->getContentSize().width,0));
 	shaman->runAction(shamanMove);
